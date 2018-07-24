@@ -1,0 +1,17 @@
+body{
+  background: #f0f0f0;
+  color: #1f1f1f;
+  width: 100%;
+  min-width: 900px;
+  font-size: 14px;
+  font-family:Verdana, Helvetica, Arial, sans-serif;
+  line-height: 18px;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+}
+.container{
+  max-width:1448px;
+  margin:0 auto;
+}
