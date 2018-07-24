@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
-
-
+import {ApiService} from '../shared/services/api.service';
 
 @Component({
   selector: 'app-settings',
@@ -11,16 +10,52 @@ import {FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 export class SettingsComponent implements OnInit {
   options: FormGroup;
 
-  foods: Array<any> = [{
+  countries: Array<any> = [{
     id: 1,
-    value: 'green'
+    value: 'Select Country'
+  }];
+
+  weathers: Array<any> = [{
+    id: 1,
+    value: 'sun',
+    iconPath: ''
   }, {
     id: 2,
-    value: 'yellow'
+    value: 'snow',
+    iconPath: ''
+  }, {
+    id: 3,
+    value: 'rain',
+    iconPath: ''
+  }, {
+    id: 4,
+    value: 'cloud',
+    iconPath: ''
   }];
-  constructor(fb: FormBuilder) {
+
+  temperatures: Array<any> = [{
+    id: 1,
+    value: '-15..-5'
+  }, {
+    id: 2,
+    value: '-5..5'
+  }, {
+    id: 2,
+    value: '5..15'
+  }, {
+    id: 3,
+    value: '15..25'
+  }, {
+    id: 4,
+    value: '25..35'
+  }];
+
+  constructor(private fb: FormBuilder, private api: ApiService) {
     this.options = fb.group({
       color: 'primary',
+      country: 0,
+      temperature: 0,
+      weather: 0,
       fontSize: [16, Validators.min(10)],
     });
   }
@@ -30,7 +65,11 @@ export class SettingsComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    console.log('OME');
+    this.api.getListCountries()
+      .subscribe((response: Array<any>) => {
+        this.countries = response;
+      });
   }
 
 }

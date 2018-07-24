@@ -1,27 +1,32 @@
 <div class="container">
-  <!--<mat-form-field>-->
-    <!--<mat-select placeholder="Favorite food">-->
-      <!--<mat-option *ngFor="let food of foods" [value]="food.id">-->
-        <!--{{food.value}}-->
-      <!--</mat-option>-->
-    <!--</mat-select>-->
-  <!--</mat-form-field>-->
+  <div layout="row" >
+    <form class="example-container" [formGroup]="options" [style.fontSize.px]="getFontSize()">
+
+      <mat-form-field>
+        <mat-select placeholder="Country" formControlName="country">
+          <mat-option value="primary" *ngFor="let country of countries" >{{country.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-select placeholder="Temperature" formControlName="temperature">
+          <mat-option value="primary" *ngFor="let temperature of temperatures" >{{temperature.value}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-select placeholder="Weather" formControlName="weather">
+          <mat-option value="primary" *ngFor="let weather of weathers" >{{weather.value}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <!--<mat-form-field>-->
+      <!--<input matInput type="number" placeholder="Font size (px)" formControlName="fontSize" min="10">-->
+      <!--<mat-error *ngIf="options.get('fontSize')?.invalid">Min size: 10px</mat-error>-->
+      <!--</mat-form-field>-->
+    </form>
+
+
+  </div>
 </div>
-<div layout="row" >
-  <form class="example-container" [formGroup]="options" [style.fontSize.px]="getFontSize()">
-    <mat-form-field [color]="options.value.color">
-      <mat-select placeholder="Color" formControlName="color">
-        <mat-option value="primary">Primary</mat-option>
-        <mat-option value="accent">Accent</mat-option>
-        <mat-option value="warn">Warn</mat-option>
-      </mat-select>
-    </mat-form-field>
 
-    <mat-form-field [color]="options.value.color">
-      <input matInput type="number" placeholder="Font size (px)" formControlName="fontSize" min="10">
-      <mat-error *ngIf="options.get('fontSize')?.invalid">Min size: 10px</mat-error>
-    </mat-form-field>
-  </form>
-
-
-</div>

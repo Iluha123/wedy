@@ -2,11 +2,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 
+
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { SettingsComponent } from './settings/settings.component';
 import { MainComponent } from './main/main.component';
+import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import {
   MatAutocompleteModule,
@@ -45,6 +48,7 @@ import {
   MatTooltipModule,
   MatTreeModule } from '@angular/material';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {ApiService} from './shared/services/api.service';
 
 
 @NgModule({
@@ -98,6 +102,8 @@ export class DemoMaterialModule {}
   ],
   imports: [
     BrowserModule,
+    HttpModule,
+    HttpClientModule,
     AppRoutingModule,
     MatFormFieldModule,
     MatInputModule,
@@ -106,7 +112,7 @@ export class DemoMaterialModule {}
     DemoMaterialModule,
     NoopAnimationsModule
   ],
-  providers: [],
+  providers: [ApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
