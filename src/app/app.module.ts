@@ -49,6 +49,8 @@ import {
   MatTreeModule } from '@angular/material';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ApiService} from './shared/services/api.service';
+import {StorageService} from './shared/services/storage.service';
+import {GlobalDataService} from './shared/services/globalData.service';
 
 
 @NgModule({
@@ -112,7 +114,7 @@ export class DemoMaterialModule {}
     DemoMaterialModule,
     NoopAnimationsModule
   ],
-  providers: [ApiService],
+  providers: [ApiService, StorageService, GlobalDataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

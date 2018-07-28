@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import {ApiService} from '../shared/services/api.service';
+import {GlobalDataService} from '../shared/services/globalData.service';
 
 @Component({
   selector: 'app-settings',
@@ -31,6 +32,14 @@ export class SettingsComponent implements OnInit {
     id: 4,
     value: 'cloud',
     iconPath: ''
+  }, {
+    id: 5,
+    value: 'storm',
+    iconPath: ''
+  }, {
+    id: 6,
+    value: 'wind',
+    iconPath: ''
   }];
 
   temperatures: Array<any> = [{
@@ -50,7 +59,9 @@ export class SettingsComponent implements OnInit {
     value: '25..35'
   }];
 
-  constructor(private fb: FormBuilder, private api: ApiService) {
+  selected: any = {};
+
+  constructor(private fb: FormBuilder, private api: ApiService, private dataS: GlobalDataService) {
     this.options = fb.group({
       color: 'primary',
       country: 0,
@@ -58,6 +69,8 @@ export class SettingsComponent implements OnInit {
       weather: 0,
       fontSize: [16, Validators.min(10)],
     });
+
+    console.log(this.dataS.get());
   }
 
   getFontSize() {
@@ -70,6 +83,11 @@ export class SettingsComponent implements OnInit {
       .subscribe((response: Array<any>) => {
         this.countries = response;
       });
+  }
+
+  changeCountry(value: any, key: string) {
+    this.selected[key] = value;
+    this.dataS.set(this.selected);
   }
 
 }

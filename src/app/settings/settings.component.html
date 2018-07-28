@@ -3,20 +3,30 @@
     <form class="example-container" [formGroup]="options" [style.fontSize.px]="getFontSize()">
 
       <mat-form-field>
-        <mat-select placeholder="Country" formControlName="country">
-          <mat-option value="primary" *ngFor="let country of countries" >{{country.name}}</mat-option>
+        <mat-select
+          placeholder="Country"
+          formControlName="country"
+          (selectionChange)="changeCountry($event.value, 'country')"
+          [(ngModel)]="selected.country"
+          multiple>
+
+          <mat-option value="{{country.name}}" *ngFor="let country of countries" >{{country.name}}</mat-option>
         </mat-select>
       </mat-form-field>
 
       <mat-form-field>
-        <mat-select placeholder="Temperature" formControlName="temperature">
-          <mat-option value="primary" *ngFor="let temperature of temperatures" >{{temperature.value}}</mat-option>
+        <mat-select placeholder="Temperature" formControlName="temperature"
+                    (selectionChange)="changeCountry($event.value, 'temperature')"
+                    [(value)]="selected.temperature" multiple>
+          <mat-option value="{{temperature.value}}" *ngFor="let temperature of temperatures" >{{temperature.value}}</mat-option>
         </mat-select>
       </mat-form-field>
 
       <mat-form-field>
-        <mat-select placeholder="Weather" formControlName="weather">
-          <mat-option value="primary" *ngFor="let weather of weathers" >{{weather.value}}</mat-option>
+        <mat-select placeholder="Weather" formControlName="weather"
+                    (selectionChange)="changeCountry($event.value, 'weather')"
+                    [(value)]="selected.weather" multiple>
+          <mat-option value="{{weather.value}}" *ngFor="let weather of weathers" >{{weather.value}}</mat-option>
         </mat-select>
       </mat-form-field>
 
