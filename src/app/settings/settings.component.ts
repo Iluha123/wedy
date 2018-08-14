@@ -9,7 +9,7 @@ import {GlobalDataService} from '../shared/services/globalData.service';
   styleUrls: ['./settings.component.scss']
 })
 export class SettingsComponent implements OnInit {
-  options: FormGroup;
+  settingsForm: FormGroup;
 
   countries: Array<any> = [{
     id: 1,
@@ -49,32 +49,25 @@ export class SettingsComponent implements OnInit {
     id: 2,
     value: '-5..5'
   }, {
-    id: 2,
+    id: 3,
     value: '5..15'
   }, {
-    id: 3,
+    id: 4,
     value: '15..25'
   }, {
-    id: 4,
+    id: 5,
     value: '25..35'
   }];
+  valueTest: string;
 
-  selected: any = {};
+  // selected: any = {};
 
   constructor(private fb: FormBuilder, private api: ApiService, private dataS: GlobalDataService) {
-    this.options = fb.group({
-      color: 'primary',
-      country: 0,
-      temperature: 0,
-      weather: 0,
-      fontSize: [16, Validators.min(10)],
+    this.settingsForm = fb.group({
+      color: 'primary'
     });
 
-    console.log(this.dataS.get());
-  }
-
-  getFontSize() {
-    return Math.max(10, this.options.value.fontSize);
+    this.selected = this.dataS.get();
   }
 
   ngOnInit() {

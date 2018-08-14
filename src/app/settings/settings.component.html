@@ -1,39 +1,35 @@
 <div class="container">
   <div layout="row" >
-    <form class="example-container" [formGroup]="options" [style.fontSize.px]="getFontSize()">
-
+    <form class="example-container" [formGroup]="settingsForm">
       <mat-form-field>
         <mat-select
           placeholder="Country"
-          formControlName="country"
           (selectionChange)="changeCountry($event.value, 'country')"
-          [(ngModel)]="selected.country"
+          [(value)]="selected.country"
           multiple>
 
-          <mat-option value="{{country.name}}" *ngFor="let country of countries" >{{country.name}}</mat-option>
+          <mat-option [value]="country.name" *ngFor="let country of countries">{{country.name}}</mat-option>
         </mat-select>
       </mat-form-field>
 
       <mat-form-field>
-        <mat-select placeholder="Temperature" formControlName="temperature"
+        <mat-select placeholder="Temperature"
                     (selectionChange)="changeCountry($event.value, 'temperature')"
-                    [(value)]="selected.temperature" multiple>
-          <mat-option value="{{temperature.value}}" *ngFor="let temperature of temperatures" >{{temperature.value}}</mat-option>
+                    [(value)]="selected.temperature"
+                    multiple>
+          <mat-option><input [(ngModel)]="valueTest"></mat-option>
+          <mat-option *ngFor="let temperature of temperatures" [value]="temperature.id">{{temperature.value}}</mat-option>
         </mat-select>
       </mat-form-field>
 
       <mat-form-field>
-        <mat-select placeholder="Weather" formControlName="weather"
+        <mat-select placeholder="Weather"
                     (selectionChange)="changeCountry($event.value, 'weather')"
                     [(value)]="selected.weather" multiple>
-          <mat-option value="{{weather.value}}" *ngFor="let weather of weathers" >{{weather.value}}</mat-option>
+          <mat-option [value]="weather.value" *ngFor="let weather of weathers" >{{weather.value}}</mat-option>
         </mat-select>
       </mat-form-field>
 
-      <!--<mat-form-field>-->
-      <!--<input matInput type="number" placeholder="Font size (px)" formControlName="fontSize" min="10">-->
-      <!--<mat-error *ngIf="options.get('fontSize')?.invalid">Min size: 10px</mat-error>-->
-      <!--</mat-form-field>-->
     </form>
 
 
